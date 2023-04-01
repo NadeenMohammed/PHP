@@ -9,7 +9,8 @@
 <body>
     <h1>task one :</h1>
 <?php
-
+//^ task one ---------------------------------- 
+    
 echo nl2br("in case you are viewing \n the page source you will detect \n a newline inside this string.");
 echo nl2br("You will detect the \n newlines inside this string \r\n on the window of the browser.<br> <hr>");
 // print_r($_SERVER);
@@ -19,6 +20,8 @@ echo '<hr>';
 
 <h1>task two:</h1>
 <?php
+    //^ task two -----------------------------------
+    
 //!  to set the hight 
 function setHeight(int $minheight = 50) {
     echo "The height is : $minheight <br>";
@@ -53,6 +56,8 @@ echo '<hr>';
 ?>
 <h1>task four :</h1>
 <?php
+    //^task four --------------------------------------------
+    
 echo '<hr>';
  $numbers = array (12,45,10,25);
  echo 'array is:';
@@ -74,6 +79,8 @@ $reverse = array_reverse($numbers);
  ?>
  <h1>task five:</h1>
  <?php
+     //^task five --------------------------------------------
+    
  $names = array("Sara"=>31,"John"=>41,"Walaa"=>39,"Ramy"=>40) ;
  echo '<h2 style=color:red> ascending order by value </h2><br>';
  asort($names);
@@ -106,6 +113,7 @@ $reverse = array_reverse($numbers);
 ?>
 <h1>task three :$_SERVER</h1>
 <?php
+     //^task three --------------------------------------------
 foreach($_SERVER as $key => $value)
 {
     echo $key . '-';
