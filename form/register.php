@@ -35,7 +35,7 @@
     <legend class="col-form-label col-sm-2 pt-0">Gender :</legend>
     <div class="col-sm-10">
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="Ugender" id="gender1" value="Female" checked>
+        <input class="form-check-input" type="radio" name="Ugender" id="gender1" value="Female">
         <label class="form-check-label" for="gender1">
           Female
         </label>
