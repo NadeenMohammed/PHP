@@ -6,76 +6,73 @@
 </head>
 
 <body>
-	<center>
-		<?php
-		$conn = mysqli_connect("localhost", "root", "", "grades");
-		
-		// Check connection
-		if($conn === false){
-			die("ERROR: Could not connect. "
-				. mysqli_connect_error());
-		};
-		
-		$name = $_POST['Uname'];
-		$email = $_REQUEST['Uemail'];
-		$gender = $_POST['Ugender'];
-		$mailstatus = $_POST['receive'];
+	
 
-		$sql = "INSERT INTO grades (user_name,user_email, gender, mail_status )VALUES ('$name','$email','$gender','$mailstatus' )";
-		
-		if(mysqli_query($conn, $sql)){
-         
+   <h1>User List</h1>
+    <a href="register.php">Add New User</a>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Mail Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Connect to the database
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "grades";
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-			// echo nl2br("\n$name\n $email\n "
-			// 	. "$gender\n $submit \n $mailstatus");
-		} else{
-			echo "ERROR: Hush! Sorry $sql. "
-				. mysqli_error($conn);
-		};
-		
-		// Close connection
-		
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
+            // If form is submitted, insert new user into database
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Uname']) && isset($_POST['Uemail']) && isset($_POST['Ugender'])) {
+                $name = $_POST['Uname'];
+                $email = $_POST['Uemail'];
+                $gender = $_POST['Ugender'];
+                $mail_status = isset($_POST['receive']) ? $_POST['receive'] : '';
 
-        $sql = 'SELECT user_name,user_email, gender, mail_status FROM grades';
-        // mysqli_select_db($conn,$dbname);
-        $result = mysqli_query($conn,$sql );
-        
-        if(! $result ) {
-           die('Could not get data: ' . mysqli_error($conn));
-        }
-     
-     
-        if (mysqli_num_rows($result) > 0) {
-           // output data of each row
-     
-           // echo "<table>";
-           while($row = mysqli_fetch_assoc($result)) {
-           
+                // Insert user into database
+                $sql = "INSERT INTO grades (user_name,user_email, gender, mail_status ) VALUES ('$name', '$email','$gender', '$mail_status')";
+                if ($conn->query($sql) == TRUE) {
+                    echo "New user created successfully";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                };
+            };
 
-            echo "<table>";
-         
-           echo "<tr>";
-        echo "<td> user name:{$row['user_name']}  </td>  "
-       . " <td> user email : {$row['user_email']} </td>  "
-        ." <td>user gender : {$row['gender']} </td>  "
-        ." <td>mail_status: {$row['mail_status']} </td> ";
-        echo "</tr >";
-        echo "</table>";
-           }
-           // echo "</table>";
-     
-         } else {
-           echo "0 results";
-         };
-         /* //Its a good practice to release cursor memory
-         mysqli_free_result($result);
-         */
-        echo "Fetched data successfully\n";
-        
-        mysqli_close($conn);
-		?>
-	</center>
+            // Retrieve users from database and display them in a table
+            $sql = "SELECT * FROM grades";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" .$row['user_name'] . "</td>";
+                    echo "<td>" .$row['user_email'] . "</td>";
+                    echo "<td>" .$row['gender'] . "</td>";
+                    echo "<td>" .($row['mail_status'] ? $row['mail_status'] : 'Not Sent') . "</td>";
+                    echo "<td>Send Mail</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>0 results</td></tr>";
+            }
+
+            // Close database connection
+            $conn->close();
+            ?>
+        </tbody>
+    </table>
 </body>
 
 </html>
