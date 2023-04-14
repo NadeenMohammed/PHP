@@ -75,7 +75,7 @@ session_start();
                     $userPass = $_POST['Upass'];
                     $userCoPass = $_POST['Co_Upass'];
 
-                    $sql = "INSERT INTO signin(user_name,user_pass) VALUES('$userName','$userPass')";
+                    $sql = "INSERT INTO signup (user_name,user_pass,user_COpass) VALUES ('$userName','$userPass','$userCoPass')";
                     if ($conn->query($sql) == TRUE) {
                         echo "New user created successfully";
                          header("Location: login.php");

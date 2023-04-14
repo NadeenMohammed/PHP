@@ -9,6 +9,19 @@
 
 </head>
 <body>
-    <h1>welcome user</h1>
+<h1>welcome user</h1>
+ <?php
+session_start();
+if (isset($_SESSION['Uname'])) {
+	$username = $_SESSION['Uname'];
+	echo "Hello $username!";
+} else {
+	header("Location: login.php");
+	exit();
+}
+?> 
+   
+
+
 </body>
 </html>

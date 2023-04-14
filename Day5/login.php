@@ -17,7 +17,7 @@ session_start();
         <div class="col-md-8">
 <h2>LOGIN</h2>
 <p>Please fill in your credentials to login.</p>
-            <form >
+            <form  method = "POST">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">User Name</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" name = "Uname">
@@ -26,7 +26,7 @@ session_start();
                   <label for="exampleInputPassword1" class="form-label">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" name = "Upass">
                </div>
-              <a href="./index.php"><button type="submit" class="btn btn-primary" value="sign_in">Login</button></a>
+              <a href="./index.php"><button type="submit" name ="login" class="btn btn-primary" value="sign_in">Login</button></a>
               <p>Don't have an account? <a href="./register.php">sign up now.</a></p>
             </form>
         </div>
@@ -59,16 +59,17 @@ session_start();
              
             // echo "<br>Database Table  created successfully\n";
 
-            ////////////////////////^ GET THE INPUT INSIDE DATABASE *////////////////////////
+            ////////////////////////^ GET THE INPUT INSIDE DATABASE *///////////////////////
+
             mysqli_select_db( $conn,$dbname );
-            $Uname = " " ;
-            $Upass = " " ;
-            if(!empty($_POST['login'])){
-                $Uname = mysqli_real_escape_string($con,$_POST['user_name']);
-                $Upass = mysqli_real_escape_string($con,$_POST['user_pass']);
-                $sql = mysqli_query($con,"SELECT * FROM SIGNIN WHERE
-                 user_name = '$Uname' &&
-                 user_pass = '$Upass' ");
+            // $Uname = " " ;
+            // $Upass = " " ;
+            if(!empty($_POST['login']))
+            {
+              $uname = $_POST['Uname'];
+              $upass = $_POST['Upass'];
+
+              $sql = mysqli_query($conn,"SELECT * FROM signup WHERE user_name= '$uname' AND user_pass='$upass'");
                   $num =mysqli_num_rows($sql);
                   if($num>0){
                     //echo "found";
@@ -78,7 +79,7 @@ session_start();
                     header('location: index.php');
                     exit();
                   }else{
-                    $msg = "Please Enter Valid Data";
+                    echo "Please Enter Valid Data";
                   }
             
                 
