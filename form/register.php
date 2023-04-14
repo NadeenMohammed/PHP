@@ -21,7 +21,7 @@
                 <p style="color:gray;">Please fill this form and submit to add record to the database.</p>
 
                
-		<form action="data.php" method="post">
+		<form  method="post">
         <div class="form-floating mb-3">
   <input type="text" class="form-control" id="floatingInput" placeholder="Enter Name" name = 'Uname'>
   <label for="floatingInput">Name</label>

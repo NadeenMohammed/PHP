@@ -69,6 +69,8 @@
 
                 // Insert user into database
                 $sql = "INSERT INTO PHP4 (user_name,user_email, gender, mail_status ) VALUES ('$name', '$email','$gender', '$mail_status')";
+
+               
                 if ($conn->query($sql) == TRUE) {
                     echo "New user created successfully";
                 } else {
