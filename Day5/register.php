@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +15,7 @@ session_start();
         <div class="col-md-8">
 <h2>SIGN UP</h2>
 <p>Please fill this to create account.</p>
-            <form  method="post">
+            <form  method="post" action = "./reg_backend.php">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">User Name</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" name = "Uname">
@@ -30,63 +28,14 @@ session_start();
                   <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" name = "Co_Upass">
                </div>
-              <a href="./login.php"> <button type="submit" class="btn btn-primary" value="submit" name="submit">CREATE </button></a>
+              <a href=""> <button type="submit" class="btn btn-primary" value="submit" name="submit">CREATE </button></a>
               <p>Already have an account? <a href="./login.php">Log in here.</a></p>
             </form>
         </div>
     </div>
 </div>
 
-<?php
-            ////////////////////////* Connect to database *////////////////////////
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "PHPD5";
-            $conn = mysqli_connect($host, $username, $password, $dbname);
 
-            if (!$conn) {
-            	die("Connection failed: " . mysqli_connect_error());
-            }
-            
-            ////////////////////////! CREATE TABLE IN DATABASE *////////////////////////
-            //     $sql = "CREATE TABLE IF NOT EXISTS SIGNUP(
-            //    id int AUTO_INCREMENT PRIMARY KEY , 
-            //    user_name VARCHAR(255) NOT NULL ,
-            //    user_pass INT(25) NOT NULL,
-            //    user_COpass INT(25) NOT NULL
-            //    )";
-            // $retval = mysqli_query( $conn,$sql );
-   
-            // if(! $retval ) {
-            //    die('Could not create table: ' . mysqli_error($conn));
-            // }
-             
-            // echo "<br>Database Table  created successfully\n";
-
-
-            ////////////////////////^ GET DATA IN TABLE *////////////////////////
-            if($_SERVER["REQUEST_METHOD"]=="POST"
-             && isset($_POST['Uname']) 
-             && isset($_POST['Upass']) 
-             && isset($_POST['Co_Upass']))
-            {
-                    $userName = $_POST['Uname'];
-                    $userPass = $_POST['Upass'];
-                    $userCoPass = $_POST['Co_Upass'];
-
-                    $sql = "INSERT INTO signup (user_name,user_pass,user_COpass) VALUES ('$userName','$userPass','$userCoPass')";
-                    if ($conn->query($sql) == TRUE) {
-                        echo "New user created successfully";
-                         header("Location: login.php");
-                    } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
-                    };
-                    $retval = mysqli_query( $con,$sql );
-                                mysqli_close($con);
-            }
-            
-?>
 
 
 

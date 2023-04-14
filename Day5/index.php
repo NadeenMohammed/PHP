@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+$host = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "PHPD5";
+            $conn = mysqli_connect($host, $username, $password, $dbname);
+
+            if (!$conn) {
+            	die("Connection failed: " . mysqli_connect_error());
+            }
+
+        //     if(isset($_SESSION['USER_ID']) && isset($_SESSION['Uname'])){
+           
+        //         $_SESSION['USER_ID'] = $row['id'];
+        //         $_SESSION['Uname'] = $row['user_name'];
+        // //    unset($_SESSION['USER_ID']);
+        //    unset($_SESSION['USER_NAME']);
+         //    die();
+        //     }
+if (isset($_SESSION['Uname']) && isset($_SESSION['USER_ID'])) {
+	$username = $_SESSION['Uname'];
+	// echo "Hello $username!";
+} else {
+	header("Location: login.php");
+	exit();
+}
+?> 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,19 +40,12 @@
 
 </head>
 <body>
-<h1>welcome user</h1>
- <?php
-session_start();
-if (isset($_SESSION['Uname'])) {
-	$username = $_SESSION['Uname'];
-	echo "Hello $username!";
-} else {
-	header("Location: login.php");
-	exit();
-}
-?> 
-   
+<h1>welcome <?php echo $username ?>!!</h1>
 
+   
+<div class="btn btn">
+    <a href="./login.php"><button class="btn btn-outline-danger">SIGN OUT</button></a>
+</div>
 
 </body>
 </html>
