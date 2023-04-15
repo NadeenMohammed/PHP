@@ -11,23 +11,23 @@
             }
             
             ////////////////////////! CREATE TABLE IN DATABASE *////////////////////////
-                $sql = "CREATE TABLE IF NOT EXISTS SIGNUP(
-               id int AUTO_INCREMENT PRIMARY KEY , 
-               user_name VARCHAR(255) NOT NULL ,
-               user_pass INT(25) NOT NULL,
-               user_COpass INT(25) NOT NULL
-               )";
-            $retval = mysqli_query( $conn,$sql );
+            //     $sql = "CREATE TABLE IF NOT EXISTS SIGNUP(
+            //    id int AUTO_INCREMENT PRIMARY KEY , 
+            //    user_name VARCHAR(255) NOT NULL ,
+            //    user_pass INT(25) NOT NULL,
+            //    user_COpass INT(25) NOT NULL
+            //    )";
+            // $retval = mysqli_query( $conn,$sql );
    
-            if(! $retval ) {
-               die('Could not create table: ' . mysqli_error($conn));
-            }
+            // if(! $retval ) {
+            //    die('Could not create table: ' . mysqli_error($conn));
+            // }
              
-            echo "<br>Database Table  created successfully\n";
+            // echo "<br>Database Table  created successfully\n";
 
 
             ////////////////////////^ GET DATA IN TABLE *////////////////////////
-            $userName = $_POST['Uname'];
+                    $userName = $_POST['Uname'];
                     $userPass = $_POST['Upass'];
                     $userCoPass = $_POST['Co_Upass'];
 
@@ -46,5 +46,19 @@
                                 mysqli_close($conn);
                              
                                 exit();
-           
+            ////////////////////////^ FORCE USER TO WRITE ALL DATA *////////////////////////
+                        // $Error =array();
+                        // if (empty($userName) OR empty($userPass) OR empty($userCoPass)) {
+                        //     array_push($Error,"All fields are required");
+                        //    };
+
+                        //    if (!filter_var($userName, FILTER_VALIDATE_EMAIL)) {
+                        //     array_push($Error, "Email is not valid");
+                        //    }
+                        //    if (strlen($userPass)<8) {
+                        //     array_push($Error,"Password must be at least 8 charactes long");
+                        //    }
+                        //    if ($userPass!==$userCoPass) {
+                        //     array_push($Error,"Password does not match");
+                        //    }
 ?>

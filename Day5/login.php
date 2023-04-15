@@ -78,11 +78,11 @@ session_start();
             <form  method = "POST">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">User Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" name = "Uname">
+                  <input type="text" class="form-control" id="exampleInputEmail1" name = "Uname" required>
                 </div>
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name = "Upass">
+                  <input type="password" class="form-control" id="exampleInputPassword1" name = "Upass" required>
                </div>
                
               <a href="./index.php"><button type="submit" name ="login" class="btn btn-primary" value="sign_in">Login</button></a>

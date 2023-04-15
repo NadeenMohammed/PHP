@@ -44,7 +44,7 @@ if (isset($_SESSION['Uname']) && isset($_SESSION['USER_ID'])) {
 
    
 <div class="btn btn">
-    <a href="./login.php"><button class="btn btn-outline-danger">SIGN OUT</button></a>
+    <a href="./logout.php"><button class="btn btn-outline-danger">SIGN OUT</button></a>
 </div>
 
 </body>
