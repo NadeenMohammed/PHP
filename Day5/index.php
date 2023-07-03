@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+setcookie("style","dark", time() + 60*60*24*90);
 $host = "localhost";
             $username = "root";
             $password = "";
